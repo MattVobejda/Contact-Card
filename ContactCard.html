@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Card</title>
+	<meta charset="utf-8" name="description" content="description content"> 
+	<!-- <link rel="stylesheet" type="text/css" href="./styles/DisappearingNinja.css"> -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var cnt=0;
+
+			$(document).on('click','button',function(){
+				console.log("Hello World");
+				$('#Cards').append(
+					'<div class="Card_Parent"><div class="Card'+cnt+'" style="height:100px; width:200px; border: 1px solid black; text-align: center;"><p><h2>'+
+					$('input[name="first_name"]').val()+
+					$('input[name="last_name"]').val()+
+					'</h2><br>Click for Description</p></div>'+
+					'<div class="Card'+cnt+'" style="height:100px; width:200px; border: 1px solid black; text-align: center; display: none"><p>'+
+					$('input[name="description"]').val()+
+					'</p></div></div>'
+				);
+				cnt++;
+				$('.Card_Parent').off();
+				$('.Card_Parent').click(function(){
+					$(this).children().toggle("slow");
+				})
+			})
+		});
+	</script>
+	<style type="text/css">
+		#wrapper{
+			height:100%;
+			width:100%;
+			display: inline-block;
+		}
+		#form{
+			height:400px; 
+			width:400px; 
+			border-top: 2px solid black;
+			display: inline-block;
+		}
+		#Cards{
+			display: inline-block;
+			vertical-align: top;
+		}
+		.displayNone{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="form">
+	        <!-- <form ="form1" action='process.php' method='post'> -->
+	        <form ="form1" action=''>
+	        	<br>First name:<input type='text' name='first_name' placeholder='First Name'><br>
+	        	Last name:<input type='text' name='last_name' placeholder='Last Name'><br>
+	        	Description:<br><input type='textarea' style="height:200px; width:250px;" name='description' placeholder='Enter Description'><br>
+	        	<button type='button' value='Add User'>Add User</button>
+	        </form>
+        </div>
+        <div id="Cards">
+	  	</div>
+	</div>
+</body>
+</html>
